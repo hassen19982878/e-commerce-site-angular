@@ -1,0 +1,84 @@
+<div id="page-top">
+    <!-- Page Wrapper -->
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+        <app-sidebar></app-sidebar>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+
+            <div id="content">
+                <!-- Topbar -->
+
+                <app-topbar></app-topbar>
+                <!-- End of Topbar -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                      <h1 class="h3 mb-0 text-gray-800">Add Product</h1>
+                    </div>
+          
+                  </div>
+                  <div class="col">
+                      <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Add product's details</h6>
+                    </div>
+          
+                    <div class="card-body">
+                  <form [formGroup]="formAddProduct" (ngSubmit)="addProduct()">
+                      <div class="form-group">
+                      <label for="name" id="name">Name : </label>
+                      <input type="text" class="form-control" formControlName="name">
+                      <div *ngIf="name.touched && name.invalid">
+                        <small *ngIf="name.errors.required" class="text-danger">name is required</small><br>
+                        <small *ngIf="name.errors.pattern" class="text-danger">Invalid name</small><br>
+                        <small *ngIf="name.errors.minlength" class="text-danger">name must contain two characters at least</small>
+                      </div>
+                  </div>
+                  <div>
+                    <div class="form-group">
+                        <label for="description" id="desc">Description : </label>
+                        <input type="text" class="form-control" formControlName="description">
+                        <div *ngIf="description.touched && description.invalid">
+                          <small *ngIf="description.errors.required" class="text-danger">description is required</small><br>
+                          <small *ngIf="description.errors.minlength" class="text-danger">description must contain two characters at least</small>
+                        </div>
+                </div>
+                <div class="form-group">
+                  <label for="price" id="price">Price : </label>
+                  <input type="number" class="form-control" formControlName="price">
+                  <div *ngIf="price.touched && price.invalid">
+                    <small *ngIf="price.errors.required" class="text-danger">price is required</small><br>
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label for="photo" id="name">Image : </label>
+                    <input type="file" class="form-control-file" formControlName="image">
+                  <div *ngIf="image.touched && image.invalid">
+                    <small *ngIf="image.errors.required" class="text-danger">image is required</small><br>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="category" id="price">Category : </label>
+                  <select class="custom-select" formControlName="category">
+                  <option [ngValue]="c" *ngFor="let c of listCategories">{{c.name}}</option>
+                </select>
+                <div *ngIf="category.touched && category.invalid">
+                  <small *ngIf="category.errors.required" class="text-danger">category is required</small><br>
+                </div>
+          </div>
+              <button class="btn btn-sm btn-primary mt-3" type="submit" [disabled]="formAddProduct.invalid">Add</button>
+              </div>
+                  </form>
+              </div>
+              </div>
+              </div>
+              <app-footer></app-footer>
+            </div>
+        </div>
